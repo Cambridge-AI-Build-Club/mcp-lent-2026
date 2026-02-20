@@ -16,5 +16,11 @@ email = "31238371+sileneer@users.noreply.github.com"
 requires = [ "uv_build>=0.10.4,<0.11.0",]
 build-backend = "uv_build"
 
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.25",
+]
+
 [project.scripts]
 spotify-mcp = "spotify_mcp:main"
