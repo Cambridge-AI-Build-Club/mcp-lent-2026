@@ -4,7 +4,7 @@ import threading
 import webbrowser
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
-from urllib.parse import parse_qs, urlparse
+from urllib.parse import parse_qs, urlencode, urlparse
 
 import httpx
 
@@ -61,12 +61,13 @@ def authorize() -> dict:
     """Run the OAuth flow: open browser, capture callback, exchange code for tokens."""
     client_id, client_secret = _get_credentials()
 
-    auth_url = (
-        f"{SPOTIFY_AUTH_URL}?response_type=code"
-        f"&client_id={client_id}"
-        f"&scope={SCOPES.replace(' ', '%20')}"
-        f"&redirect_uri={REDIRECT_URI.replace(':', '%3A').replace('/', '%2F')}"
-    )
+    params = urlencode({
+        "response_type": "code",
+        "client_id": client_id,
+        "scope": SCOPES,
+        "redirect_uri": REDIRECT_URI,
+    })
+    auth_url = f"{SPOTIFY_AUTH_URL}?{params}"
 
     server = HTTPServer(("localhost", 8888), _CallbackHandler)
     _CallbackHandler.auth_code = None
