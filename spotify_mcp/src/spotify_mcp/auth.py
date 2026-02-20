@@ -10,7 +10,7 @@ import httpx
 
 SPOTIFY_AUTH_URL = "https://accounts.spotify.com/authorize"
 SPOTIFY_TOKEN_URL = "https://accounts.spotify.com/api/token"
-REDIRECT_URI = "http://localhost:8888/callback"
+REDIRECT_URI = "http://127.0.0.1:8888/callback"
 SCOPES = "user-read-currently-playing playlist-modify-public playlist-modify-private"
 TOKEN_PATH = Path.home() / ".spotify_mcp_tokens.json"
 
@@ -69,7 +69,7 @@ def authorize() -> dict:
     })
     auth_url = f"{SPOTIFY_AUTH_URL}?{params}"
 
-    server = HTTPServer(("localhost", 8888), _CallbackHandler)
+    server = HTTPServer(("127.0.0.1", 8888), _CallbackHandler)
     _CallbackHandler.auth_code = None
 
     thread = threading.Thread(target=server.handle_request)
