@@ -1,0 +1,20 @@
+[project]
+name = "task-manager-mcp"
+version = "0.1.0"
+description = "An MCP to help manage todo tasks"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [ "mcp>=1.26.0",]
+[[project.authors]]
+name = "zihao"
+email = "31238371+sileneer@users.noreply.github.com"
+
+[build-system]
+requires = [ "uv_build>=0.10.4,<0.11.0",]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [ "pytest>=8.0",]
+
+[project.scripts]
+task-manager-mcp = "task_manager_mcp:main"

@@ -1,0 +1,17 @@
+[project]
+name = "demo-mcp"
+version = "0.1.0"
+description = "A demo for MCP creation"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [ "mcp>=1.26.0",]
+[[project.authors]]
+name = "zihao"
+email = "31238371+sileneer@users.noreply.github.com"
+
+[build-system]
+requires = [ "uv_build>=0.10.4,<0.11.0",]
+build-backend = "uv_build"
+
+[project.scripts]
+demo-mcp = "demo_mcp:main"
